@@ -1,9 +1,9 @@
-import math
 import copy
+import math
 
 import cv2 as cv
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 BLUE = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -12,31 +12,6 @@ BLACK = (0, 0, 0)
 
 FONT = cv.FONT_HERSHEY_PLAIN
 LINE_THICKNESS = 15
-
-# def size(input_image, set_size):
-#     # 이미지, 설정 하고자 하는 크기
-#     # 색 채널에 관계없이 이미지의 크기를 측정
-#     if len(input_image.shape) == 3:
-#         image_for_size = cv.cvtColor(input_image.copy(), cv.COLOR_BGR2GRAY)
-#     else:
-#         image_for_size = input_image.copy()
-#     input_height, input_width = image_for_size.shape
-#
-#     image = input_image.copy()
-#
-#     if input_width > input_height:
-#         ratio = set_size / input_width
-#         if ratio > 1:
-#             resized_image = cv.resize(image, (set_size, int(input_height / ratio)))
-#         else:
-#             resized_image = cv.resize(image, (set_size, int(input_height * ratio)))
-#     else:
-#         ratio = set_size / input_height
-#         if ratio > 1:
-#             resized_image = cv.resize(image, (int(input_width / ratio), set_size))
-#         else:
-#             resized_image = cv.resize(image, (int(input_width * ratio), set_size))
-#     return resized_image
 
 
 def show_image(figure, title, image, color='color'):
@@ -180,21 +155,9 @@ def show_connected_compounds(image, preprocess_image, vertex, edge, threshold):
 
 
 def show_element_plt(element_image, element_alphabet):
-    # plt.figure(figure)
-    # plt.suptitle(figure)
-    # plt.title(title)
-    # if color == 'color':
-    #     plt.imshow(cv.cvtColor(image.astype(np.uint8), cv.COLOR_BGR2RGB))
-    # else:
-    #     plt.imshow(image, 'gray')
-    # plt.xticks([]), plt.yticks([])
-    # plt.show()
-
     plt.imshow(element_image)
     plt.title('predict_letter : %s' % element_alphabet, fontsize=20)
     plt.show()
-
-    # show_image('Element Analysis', 'predict_letter : %s' % element_alphabet, element_image)
 
 
 def show_parent_chain(image, vertex_coordinates, first_dfs_path, second_dfs_path, combine_info):

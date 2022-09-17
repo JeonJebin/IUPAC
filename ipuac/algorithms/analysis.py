@@ -1,8 +1,3 @@
-import cv2 as cv
-
-from ipuac import template
-
-
 def find_connected_compounds(image, vertex, threshold):
     th = len(vertex)
     preprocessed_image = image.preprocess_for_body_analysis(threshold)
@@ -23,7 +18,5 @@ def find_connected_compounds(image, vertex, threshold):
     # template.show_connected_compounds(image, preprocessed_image, vertex, edge, threshold)
 
     return edge
-
-
 
 

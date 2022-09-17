@@ -1,4 +1,5 @@
 import copy
+
 import cv2 as cv
 import numpy as np
 
@@ -192,7 +193,6 @@ class Image:
 
         square_edge=max(height, width)
         white_background = np.ones((square_edge,square_edge), np.uint8) * 255
-        print(height,width)
         if height > width:
             tmp = int(square_edge/2) - int(width / 2)
             white_background[0:height, tmp:tmp + width] = element_crop

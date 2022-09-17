@@ -1,6 +1,8 @@
 import abc
+
 import numpy as np
 from keras.models import load_model
+
 from ipuac import template
 
 letters = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h', 9: 'i', 10: 'j', 11: 'k', 12: 'l',
@@ -26,6 +28,5 @@ class Ocr(TextDetector):
         letter = letters[np.argmax(predict_value) + 1]
         template.show_element_plt(crop_image, letter)
         return letters[np.argmax(predict_value) + 1]
-
 
 

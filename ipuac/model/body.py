@@ -1,9 +1,8 @@
-import copy
-
+from ipuac import template
 from ipuac.algorithms.search import dfs_with_path, bfs
 from .nomenclatures import Alkyl, Halogen
 from .parent_chain import ParentChain
-from ipuac import template
+
 
 class Body:
     def __init__(self, vertex, edge):

@@ -1,5 +1,3 @@
-
-
 class StructureFormula:
     def __init__(self, parent_chain, functional_groups):
         self.parent_chain = parent_chain

@@ -1,5 +1,5 @@
-from collections import deque
 import copy
+from collections import deque
 
 
 def dfs_with_path(graph, start, visited, stack, all_path):
@@ -43,5 +43,4 @@ def bfs(graph, start, visited):
             seperate_point = vertex_count
             branch_num = length
 
-    # "(vertax_count, seperated_point, seperated_branch_count)"
     return vertex_count, seperate_point, branch_num

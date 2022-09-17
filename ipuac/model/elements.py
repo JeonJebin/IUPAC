@@ -23,5 +23,3 @@ class Elements:
             index, alphabet = element.find_nearest_vertex(vertex)
             combine_info[index] = alphabet
         return combine_info
-
-
