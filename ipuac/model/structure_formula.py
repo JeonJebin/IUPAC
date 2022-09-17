@@ -6,8 +6,8 @@ class StructureFormula:
         self.functional_groups = functional_groups
 
     @staticmethod
-    def create(body, combine_info):
-        parent_chain = body.find_parent_chain(combine_info)
+    def create(image, body, combine_info):
+        parent_chain = body.find_parent_chain(image, combine_info)
         functional_groups = parent_chain.find_functional_groups(body, combine_info)
         return StructureFormula(parent_chain, functional_groups)
 

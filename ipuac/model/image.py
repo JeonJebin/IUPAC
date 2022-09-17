@@ -23,14 +23,14 @@ class Image:
 
     def preprocess_for_object_detect_mser(self):
         gray_image = cv.cvtColor(self.image, cv.COLOR_BGR2GRAY)
-        kernel = np.ones((3, 3), dtype=np.float64) / 9
+        kernel = np.ones((5, 5), dtype=np.float64) / 25
         filtering_image = cv.filter2D(gray_image, -1, kernel)
         inverted_image = np.invert(filtering_image)
-        th, binary_image = cv.threshold(inverted_image, 50, 255, cv.THRESH_BINARY)
+        th, binary_image = cv.threshold(inverted_image, 80, 255, cv.THRESH_BINARY)
 
-        titles = ['Filter', 'Invert', 'Binary']
-        images = [filtering_image, inverted_image, binary_image]
-        template.show_images('Object Detector(MSER) Preprocess', titles, images, 3, 'gray')
+        titles = ['Gray', 'Filter', 'Invert', 'Binary']
+        images = [gray_image, filtering_image, inverted_image, binary_image]
+        template.show_images('Object Detector(MSER) Preprocess', titles, images, 2, 'gray')
 
         return binary_image
 
@@ -41,9 +41,9 @@ class Image:
         inverted_image = np.invert(filtering_image)
         th, binary_image = cv.threshold(inverted_image, 50, 255, cv.THRESH_BINARY)
 
-        titles = ['Filter', 'Invert', 'Binary']
-        images = [filtering_image, inverted_image, binary_image / 255]
-        template.show_images('Object Detector(BFS) Preprocess', titles, images, 3, 'gray')
+        titles = ['Gray', 'Filter', 'Invert', 'Binary']
+        images = [gray_image, filtering_image, inverted_image, binary_image / 255]
+        template.show_images('Object Detector(BFS) Preprocess', titles, images, 2, 'gray')
 
         return binary_image / 255
 
@@ -126,7 +126,7 @@ class Image:
 
         titles = ['Gray', 'Binary', 'Filter', 'Binary', 'Invert']
         images = [gray_image, binary_image, mean_value_image, preprocessed_image, inverted_image]
-        template.show_images('Feature Extractor(GBET) Preprocess ', titles, images, 5, 'gray')
+        template.show_images('Feature Extractor(GBET) Preprocess ', titles, images, 3, 'gray')
 
         return inverted_image
 
@@ -139,7 +139,7 @@ class Image:
 
         titles = ['Gray', 'Filter', 'Binary', 'Invert']
         images = [gray_image, mean_value_image, binary_image, invert_image]
-        template.show_images('NetWindow Preprocess', titles, images, 4, 'gray')
+        template.show_images('NetWindow Preprocess', titles, images, 2, 'gray')
 
         return invert_image
 

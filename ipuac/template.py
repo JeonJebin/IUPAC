@@ -138,8 +138,8 @@ def show_net_window_bfs_map(map, image, candidates, group):
             else:
                 map_image[i][j] = 0
 
-    titles = ['NetWindow Preprocess']
-    images = [np.array(map_image)]
+    titles = []
+    images = []
 
     for index, points in enumerate(group):
         group_image = image.copy()
@@ -148,7 +148,8 @@ def show_net_window_bfs_map(map, image, candidates, group):
         titles.append('BFS Group%d' % index)
         images.append(group_image)
 
-    show_images('NetWindow Preprocess and BFS', titles, images, 4, 'color')
+    show_images('', ['Original Image', 'NewWindow BFS Area'], [image.copy(), np.array(map_image)], 2)
+    show_images('NetWindow Preprocess(BFS Groups)', titles, images, 4, 'color')
 
 
 def show_net_window(original_image, candidate_points, feature_points):
@@ -194,3 +195,28 @@ def show_element_plt(element_image, element_alphabet):
     plt.show()
 
     # show_image('Element Analysis', 'predict_letter : %s' % element_alphabet, element_image)
+
+
+def show_parent_chain(image, vertex_coordinates, first_dfs_path, second_dfs_path, combine_info):
+    first_path_image = image.copy()
+    for index in range(1, first_dfs_path[0]):
+        cv.line(first_path_image, vertex_coordinates[first_dfs_path[1][index - 1]], vertex_coordinates[first_dfs_path[1][index]], GREEN, 5, cv.LINE_AA)
+
+    for index, vertex in enumerate(first_dfs_path[1]):
+        cv.circle(first_path_image, vertex_coordinates[vertex], LINE_THICKNESS, RED, -1, cv.LINE_AA)
+
+    second_path_image = image.copy()
+    for index in range(1, second_dfs_path[0]):
+        cv.line(second_path_image, vertex_coordinates[second_dfs_path[1][index - 1]], vertex_coordinates[second_dfs_path[1][index]], GREEN, 5, cv.LINE_AA)
+
+    for index, vertex in enumerate(second_dfs_path[1]):
+        cv.circle(second_path_image, vertex_coordinates[vertex], LINE_THICKNESS, RED, -1, cv.LINE_AA)
+
+    for index in range(len(combine_info)):
+        if combine_info[index] != '':
+            cv.circle(first_path_image, vertex_coordinates[index], LINE_THICKNESS, BLUE, -1, cv.LINE_AA)
+            cv.circle(second_path_image, vertex_coordinates[index], LINE_THICKNESS, BLUE, -1, cv.LINE_AA)
+
+    titles = ['First DFS', 'Second DFS']
+    images = [first_path_image, second_path_image]
+    show_images('', titles, images, 2)

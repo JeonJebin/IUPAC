@@ -3,7 +3,7 @@ import copy
 from ipuac.algorithms.search import dfs_with_path, bfs
 from .nomenclatures import Alkyl, Halogen
 from .parent_chain import ParentChain
-
+from ipuac import template
 
 class Body:
     def __init__(self, vertex, edge):
@@ -12,9 +12,10 @@ class Body:
         self.__edge = edge
         self.__graph = self.__make_graph()
 
-    def find_parent_chain(self, combine_info):
+    def find_parent_chain(self, image, combine_info):
         first_dfs_path = self.__find_longest_path(self.__graph, 0, combine_info)
         second_dfs_path = self.__find_longest_path(self.__graph, first_dfs_path[1][-1], combine_info)
+        template.show_parent_chain(image, self.__vertex_coordinates, first_dfs_path, second_dfs_path, combine_info)
         return ParentChain(second_dfs_path)
 
     def get_original_coordinate(self, coordinates):

@@ -79,7 +79,13 @@ def bfs_with_area(image, start, visited, width, height):
                     y_max = max(new_y, y_max)
     if area < (width / 100) * (height / 100):
         return True, []
-    return False, [x_min - 2, y_min - 2, x_max + 2, y_max + 2]
+
+    x_min = x_min - 2 if x_min >= 2 else 0
+    y_min = y_min - 2 if y_min >= 2 else 0
+    x_max = x_max + 2 if x_max < width else width - 1
+    y_max = y_max + 2 if y_max < height else height - 1
+
+    return False, [x_min, y_min, x_max, y_max]
 
 
 class Bfs(ObjectDetector):

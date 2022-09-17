@@ -30,7 +30,7 @@ class Objects:
         while len(edge) + 1 != len(vertex):
             edge = analysis.find_connected_compounds(body_image, vertex, threshold)
             threshold += 1
-        return Body(vertex, edge)
+        return body_image, Body(vertex, edge)
 
     def find_elements(self, image, text_detector):
         candidates = []
